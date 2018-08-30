@@ -52,13 +52,7 @@ Fn functions executing `CRUD` operations on Oracle DB. This sample uses a simple
 
 - (if you haven't already) Start local Fn server - `fn start`
 - Switch context - `fn use context default`
-
-### Configure Docker
-
-> This is not required if you don't want to push the function Docker images to an external Docker registry
-
-- `docker login` (use your docker registry credentials)
-- `export FN_REGISTRY=<name of your docker repository>`
+- Set registry to a dummy name `export FN_REGISTRY=fndemouser`
 
 
 ### Create an app with required database configuration
