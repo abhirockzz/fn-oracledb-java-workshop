@@ -52,7 +52,7 @@ Fn functions executing `CRUD` operations on Oracle DB. This sample uses a simple
 
 - (if you haven't already) Start local Fn server - `fn start`
 - Switch context - `fn use context default`
-- Set registry to a dummy name `export FN_REGISTRY=fndemouser`
+- Set registry to a dummy name - `export FN_REGISTRY=fndemouser`
 
 
 ### Create an app with required database configuration
