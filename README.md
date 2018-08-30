@@ -71,7 +71,7 @@ Fn functions executing `CRUD` operations on Oracle DB. This sample uses a simple
 
 Deploy one function at a time. For example, to deploy the `create` function
 
-- `cd fn-oracledb-java-workshop/create`
+- `cd ../create`
 - `fn -v deploy --app fn-oradb-java-app --local --no-bump` (`-v` will activate verbose mode)
 
 > Make sure you do not miss the `--local` option without which Fn will try to push the function Docker images to an external Docker registry
