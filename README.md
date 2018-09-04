@@ -50,7 +50,17 @@ Fn functions executing `CRUD` operations on Oracle DB. This sample uses a simple
 
 ### Start Fn
 
-- (if you haven't already) Start local Fn server - `fn start`
+- Start local Fn server - `fn start`
+	- Ensure you are running the latest fn cli (v0.4.153 or above) and fn server (v0.3.545 or above)
+	- If you have older version please update the CLI and the server
+	- To update the fn cli run the following command
+	```
+	curl -LSs https://raw.githubusercontent.com/fnproject/cli/master/install | sh
+	```
+	- To update the fn server run the following command
+	```
+	fn update sv
+	```
 - Switch context - `fn use context default`
 - Set registry to a dummy name - `export FN_REGISTRY=fndemouser`
 
