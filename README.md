@@ -4,6 +4,8 @@ Fn functions executing `CRUD` operations on Oracle DB. This sample uses a simple
 
 > For the purposes of this lab, an [Oracle Database instance on Oracle Cloud Infrastructure](https://docs.cloud.oracle.com/iaas/Content/Database/Concepts/databaseoverview.htm?tocpath=Services%7CDatabase%7C_____0) has already been provisioned for you along with the associated schema and table
 
+As you make your way through the tutorials, look out for this icon ![](images/userinput.png) Whenever you see it, it's time for you to perform an action
+
 ## Setup
 
 ### Build the (base) Docker image containing Oracle JDBC driver
@@ -90,6 +92,15 @@ Switch context
    >```
    > fn use context default
    >```
+
+Check if `default` is now the current context. Run the following command. An `*` is used to indicate the current context as shown below.
+
+	fn ls context
+	
+	CURRENT	NAME			PROVIDER	API URL			REGISTRY
+	*	default				default		http://localhost:8080/v1
+		workshop			oracle		https://api.test.us-ashburn-1.functions.oci.oraclecloud.com	iad.ocir.io/oracle-serverless-devrel/workshop-NNN
+
 
 Set registry to a dummy name
 
