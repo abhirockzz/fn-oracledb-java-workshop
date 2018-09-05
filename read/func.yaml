@@ -6,6 +6,7 @@ build_image: oracle_jdbc_driver_docker
 run_image: fnproject/fn-java-fdk:jdk9-1.0.63
 cmd: io.fnproject.example.GetEmployeeFunction::handle
 format: http
+timeout: 60
 triggers:
 - name: fn-oradb-app-read-func
   type: http
