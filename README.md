@@ -138,10 +138,19 @@ Deploy one function at a time. For example, to deploy the `create` function
 
 For `read` function deployment
 
-- `cd ../read`
-- `fn -v deploy --app fn-oradb-java-app --local --no-bump`
+   ![](images/userinput.png)
+   >```
+   > cd ../read
+   >```
 
-> Repeat for other functions i.e. `delete` and `update`
+
+   ![](images/userinput.png)
+   >```
+   > fn -v deploy --app fn-oradb-java-app --local --no-bump
+   >```
+
+
+*Repeat for other functions i.e. `delete` and `update`*
 
 Check your app (and its config)
 
