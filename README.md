@@ -11,9 +11,20 @@ Fn functions executing `CRUD` operations on Oracle DB. This sample uses a simple
 - Clone or download this repo
 - download the Oracle JDBC driver from [this link](https://www.oracle.com/technetwork/database/features/jdbc/default-2280470.html) (`ojdbc7.jar` should be fine) and copy it to the `oracle_driver_docker` folder
 - Build a Docker image with the driver JAR (You will use an existing Dockerfile)
-	- `cd fn-oracledb-java-workshop/oracle_driver_docker`
-	- Start Docker on your machine
-	- `docker build -t oracle_jdbc_driver_docker .` (if you choose to change the name of the image i.e. `oracle_jdbc_driver_docker`, you'll need to update those references in the `build_image` section of the `func.yaml` for all the functions)
+	  
+	![](images/userinput.png)
+	>```
+	> cd fn-oracledb-java-workshop/oracle_driver_docker
+	>```	
+
+	Start Docker on your machine
+	
+	![](images/userinput.png)
+	>```
+	> docker build -t oracle_jdbc_driver_docker .
+	>```
+	 
+	(if you choose to change the name of the image i.e. `oracle_jdbc_driver_docker`, you'll need to update those references in the `build_image` section of the `func.yaml` for all the functions)
 
 (if successful) You should see an output as below
 
@@ -50,24 +61,50 @@ Fn functions executing `CRUD` operations on Oracle DB. This sample uses a simple
 
 ### Start Fn
 
-- Start local Fn server - `fn start`
-	- Ensure you are running the latest fn cli (v0.4.153 or above) and fn server (v0.3.545 or above)
-	- If you have older version please update the CLI and the server
-	- To update the fn cli run the following command
-	```
-	curl -LSs https://raw.githubusercontent.com/fnproject/cli/master/install | sh
-	```
-	- To update the fn server run the following command
-	```
-	fn update sv
-	```
-- Switch context - `fn use context default`
-- Set registry to a dummy name - `export FN_REGISTRY=fndemouser`
+Start local Fn server
+
+   ![](images/userinput.png)
+   >```
+   > fn start
+   >```
+
+Ensure you are running the latest fn cli (v0.4.153 or above) and fn server (v0.3.545 or above. If you have older version please update the CLI and the server
+
+- To update the fn cli run the following command
+
+   ![](images/userinput.png)
+   >```
+   > curl -LSs https://raw.githubusercontent.com/fnproject/cli/master/install | sh
+   >```
+
+- To update the fn server run the following command
+
+   ![](images/userinput.png)
+   >```
+   > fn update sv
+   >```
+
+Switch context
+
+   ![](images/userinput.png)
+   >```
+   > fn use context default
+   >```
+
+Set registry to a dummy name
+
+   ![](images/userinput.png)
+   >```
+   > export FN_REGISTRY=fndemouser
+   >```
 
 
 ### Create an app with required database configuration
 
-`fn create app --config DB_URL=jdbc:oracle:thin:@//129.213.138.81:1521/workshop_iad1hs.sub08241855250.workshoplisbonv.oraclevcn.com --config DB_USER=workshopNNN --config DB_PASSWORD=<password> fn-oradb-java-app` 
+   ![](images/userinput.png)
+   >```
+   > fn create app --config DB_URL=jdbc:oracle:thin:@//129.213.138.81:1521/workshop_iad1hs.sub08241855250.workshoplisbonv.oraclevcn.com --config DB_USER=workshopNNN --config DB_PASSWORD=<password> fn-oradb-java-app
+   >```
 
 > Please replace `workshopNNN` in the `DB_USER` attribute with your username (**no hyphen**) and your database password (provided by the lab instructor) in the `DB_PASSWORD` attribute. Please leave the other parameters unchanged since they have been pre-configured based on the lab environment
 
@@ -75,8 +112,16 @@ Fn functions executing `CRUD` operations on Oracle DB. This sample uses a simple
 
 Deploy one function at a time. For example, to deploy the `create` function
 
-- `cd ../create`
-- `fn -v deploy --app fn-oradb-java-app --local --no-bump` (`-v` will activate verbose mode)
+   ![](images/userinput.png)
+   >```
+   > cd ../create
+   >```
+
+
+   ![](images/userinput.png)
+   >```
+   > fn -v deploy --app fn-oradb-java-app --local --no-bump
+   >```
 
 > Make sure you do not miss the `--local` option without which Fn will try to push the function Docker images to an external Docker registry
 
@@ -87,7 +132,12 @@ For `read` function deployment
 
 > Repeat for other functions i.e. `delete` and `update`
 
-- Run `fn inspect app fn-oradb-java-app` to check your app (and its config)
+Check your app (and its config)
+
+   ![](images/userinput.png)
+   >```
+   > fn inspect app fn-oradb-java-app
+   >```
 
 		{
 		        "config": {
@@ -101,7 +151,12 @@ For `read` function deployment
 		        "updated_at": "2018-08-30T07:24:15.182Z"
 		}
 
-- Run `fn list functions fn-oradb-java-app` to check associated functions
+Check associated functions
+
+   ![](images/userinput.png)
+   >```
+   > fn list functions fn-oradb-java-app
+   >```
 
 		NAME                            IMAGE
 		fn-oradb-app-create-func        fn-oradb-app-create-func:0.0.2
@@ -117,7 +172,10 @@ For `read` function deployment
 
 ### Create
 
-`echo -n '{"emp_email": "a@b.com","emp_name": "abhishek","emp_dept": "Product Divison"}' | fn invoke fn-oradb-java-app fn-oradb-app-create-func`
+   ![](images/userinput.png)
+   >```
+   > echo -n '{"emp_email": "a@b.com","emp_name": "abhishek","emp_dept": "Product Divison"}' | fn invoke fn-oradb-java-app fn-oradb-app-create-func
+   >```
 
 If successful, you should a response similar to this `Created employee CreateEmployeeInfo{emp_email=a@b.com, emp_name=abhishek, emp_dept=Product Divison}`
 
@@ -125,7 +183,11 @@ Create as many as you want - make sure that the `emp_email` is unique
 
 ### Read
 
-- `fn invoke fn-oradb-java-app fn-oradb-app-read-func` (to fetch all employees)
+   ![](images/userinput.png)
+   >```
+   > fn invoke fn-oradb-java-app fn-oradb-app-read-func
+   >```
+
 
 You should get back a JSON response similar to below
 
@@ -147,7 +209,13 @@ You should get back a JSON response similar to below
 	  }
 	]
 
-- `echo -n 'a@b.com' | fn invoke fn-oradb-java-app fn-oradb-app-read-func` (to fetch employee with email `a@b.com`)
+to fetch employee with email `a@b.com`
+
+   ![](images/userinput.png)
+   >```
+   > echo -n 'a@b.com' | fn invoke fn-oradb-java-app fn-oradb-app-read-func
+   >```
+
 
 		[
 		  {
@@ -161,12 +229,21 @@ You should get back a JSON response similar to below
 
 It is possible to update the department of an employee
 
-`echo -n '{"emp_email": "a@b.com", "emp_dept": "Support Operations"}' | fn invoke fn-oradb-java-app fn-oradb-app-update-func`
+
+   ![](images/userinput.png)
+   >```
+   > echo -n '{"emp_email": "a@b.com", "emp_dept": "Support Operations"}' | fn invoke fn-oradb-java-app fn-oradb-app-update-func
+   >```
 
 Successful invocation will return back a message similar to `Updated employee UpdateEmployeeInfo{emp_email=a@b.com, emp_dept=Support Operations}`
 
-Check to make sure - `echo -n 'a@b.com' | fn invoke fn-oradb-java-app fn-oradb-app-read-func` - the updated department should reflect
+Check to make sure - the updated department should reflect
 
+   ![](images/userinput.png)
+   >```
+   > echo -n 'a@b.com' | fn invoke fn-oradb-java-app fn-oradb-app-read-func
+   >```
+ 
 		[
 		  {
 		    "emp_email": "a@b.com",
@@ -177,8 +254,17 @@ Check to make sure - `echo -n 'a@b.com' | fn invoke fn-oradb-java-app fn-oradb-a
 
 ### Delete
 
-Use employee email to specify which employee record you want to delete
+Use employee email to specify which employee record you want to delete - you should see `Deleted employee a@b.com` message
 
-`echo -n 'a@b.com' | fn invoke fn-oradb-java-app fn-oradb-app-delete-func` and you should see `Deleted employee a@b.com` message
+   ![](images/userinput.png)
+   >```
+   > echo -n 'a@b.com' | fn invoke fn-oradb-java-app fn-oradb-app-delete-func
+   >```
 
-Check to make sure - `echo -n 'a@b.com' | fn invoke fn-oradb-java-app fn-oradb-app-read-func`
+ 
+Check to make sure
+
+   ![](images/userinput.png)
+   >```
+   > echo -n 'a@b.com' | fn invoke fn-oradb-java-app fn-oradb-app-read-func
+   >```
